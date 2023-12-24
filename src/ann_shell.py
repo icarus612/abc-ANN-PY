@@ -1,10 +1,10 @@
-import os
+from os import path
 
 def get_current_path():
-		return os.path.dirname(os.path.realpath(__file__))
+		return path.dirname(path.realpath(__file__))
 
 def get_file_name():
-		return os.path.basename(__file__)
+		return path.splitext(path.basename(__file__))[0]
 
 class FileNameDescriptor:
     def __get__(self, instance, owner):
