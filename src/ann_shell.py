@@ -17,14 +17,16 @@ class ANN_Shell:
 		return f'{self.name}.{self.model_type}'
 	
 	@property
-	def file_location(self):
+	def model_location(self):
 		return get_path(f'../models/{self.file_name}')
 	
 	def load_model(self):
-		pass
+		with open(self.model_location, 'r') as f:
+			return f.read()
 	
 	def save_model(self):
-		pass
+		with open(self.model_location, 'w') as f:
+			f.write(self.model)
 	
 
 if __name__ == '__main__':
