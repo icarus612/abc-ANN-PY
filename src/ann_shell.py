@@ -3,11 +3,11 @@ from os import path
 def get_path(new_path=""):
 		return path.realpath(path.join(path.dirname(__file__), new_path))
 
-def get_file_name():
+def get_name():
 		return path.splitext(path.basename(__file__))[0]
 
 class ANN_Shell:	
-	def __init__(self, name=get_file_name(), model_type='keras'):
+	def __init__(self, name=get_name(), model_type='keras'):
 		self.name = name
 		self.model_type = model_type
 		self.model = self.load_model()
