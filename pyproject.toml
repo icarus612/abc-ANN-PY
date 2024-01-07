@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "abc-ann-py"
+name = "abstract_base_classes"
 version = "0.1.0"
 description = ""
 authors = ["icarus64 <ellishogan95@gmail.com>"]
