@@ -6,8 +6,7 @@ authors = ["icarus64 <ellishogan95@gmail.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "^3.8"
-
+python = "<4.0"
 
 [build-system]
 requires = ["poetry-core"]
