@@ -1,10 +1,14 @@
-from os import path
+from os import path, makedirs, getcwd
+from pathlib import Path
 
 def get_path(new_path=""):
-		return path.realpath(path.join(path.dirname(__file__), new_path))
+	print(getcwd())
+	current_file_path = Path(__file__).resolve()
+	return path.join(path.dirname(current_file_path), new_path)
 
 def get_name():
-		return path.splitext(path.basename(__file__))[0]
+	current_file_path = Path(__file__).resolve()
+	return path.splitext(path.basename(current_file_path))[0]
 
 class ANN_Shell:	
 	def __init__(self, name=get_name(), model_type='keras'):
@@ -21,9 +25,12 @@ class ANN_Shell:
 		return get_path(f'../models/{self.file_name}')
 	
 	def load_model(self):
-		with open(self.model_location, 'r') as f:
-			return f.read()
-	
+		makedirs(self.model_location, exist_ok=True)
+		print(self.model_location, path.exists(self.model_location))
+		if path.exists(self.model_location):
+			with open(self.model_location, 'r') as f:
+				return f.read()
+		return None
 	def save_model(self):
 		with open(self.model_location, 'w') as f:
 			f.write(self.model)
