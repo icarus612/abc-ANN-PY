@@ -27,10 +27,7 @@ class ANN_Shell:
 	def load_model(self):
 		os.makedirs(os.path.dirname(self.model_location), exist_ok=True)
 
-		if not os.path.exists(self.model_location):
-			os.mkfile(self.model_location)
-
-		with open(self.model_location, 'r') as f:
+		with open(self.model_location, 'w+') as f:
 			return f.read()
 
 		
