@@ -1,13 +1,12 @@
-from os import path, makedirs, getcwd,listdir
+import os
 import sys
 
 
 def get_name():
-  return path.basename(sys.argv[0]).split('.')[0]
+  return os.path.basename(sys.argv[0]).split('.')[0]
 
 def get_path(new_path=""):
-	print(listdir(path.join(getcwd(), path.dirname(sys.argv[0]), new_path)))
-	current_path = path.abspath(path.join(getcwd(), path.dirname(sys.argv[0]), new_path))
+	current_path = os.path.abspath(os.path.join(os.getcwd(), os.path.dirname(sys.argv[0]), new_path))
 	
 	return current_path
 		
@@ -26,10 +25,15 @@ class ANN_Shell:
 		return get_path(f'../models/{self.file_name}')
 	
 	def load_model(self):
-		makedirs(path.dirname(self.model_location), exist_ok=True)
+		os.makedirs(os.path.dirname(self.model_location), exist_ok=True)
+
+		if not os.path.exists(self.model_location):
+			os.mkfile(self.model_location)
+
 		with open(self.model_location, 'r') as f:
 			return f.read()
 
+		
 	def save_model(self):
 		with open(self.model_location, 'w') as f:
 			f.write(self.model)
