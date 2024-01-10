@@ -1,14 +1,12 @@
 from os import path, makedirs, getcwd
-from pathlib import Path
+
+import pkg_resources
 
 def get_path(new_path=""):
-	print(getcwd())
-	current_file_path = Path(__file__).resolve()
-	return path.join(path.dirname(current_file_path), new_path)
+    return pkg_resources.resource_filename(__name__, new_path)
 
 def get_name():
-	current_file_path = Path(__file__).resolve()
-	return path.splitext(path.basename(current_file_path))[0]
+    return path.splitext(path.basename(pkg_resources.resource_filename(__name__, '')))[0]
 
 class ANN_Shell:	
 	def __init__(self, name=get_name(), model_type='keras'):
