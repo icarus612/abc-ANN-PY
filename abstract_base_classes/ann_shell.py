@@ -24,17 +24,13 @@ class ANN_Shell:
 	def model_location(self):
 		return get_path(f'../models/{self.file_name}')
 	
-	def load_model(self):
+	def load_model(self, func=None):
 		os.makedirs(os.path.dirname(self.model_location), exist_ok=True)
-
 		with open(self.model_location, 'w+') as f:
-			return f.read()
-
+			return func(f) if func else f.read()
 		
 	def save_model(self):
-		with open(self.model_location, 'w') as f:
-			f.write(self.model)
-	
+		self.load_model(lambda f: f.write(self.model))	
 
 if __name__ == '__main__':
 	ann_shell = ANN_Shell()
